@@ -14,8 +14,8 @@
 }
  
 .container {
-  box-shadow: 0px 0px 12px #ccc;
-  border-radius: 8px;
+  /* box-shadow: 0px 0px 12px #eb0b0b; */
+  border-radius: 12px;
   padding: 3rem;
 }
  

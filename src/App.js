@@ -9,6 +9,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [bmi, setBmi] = useState('')
   const [message, setMessage] = useState('')
+  const [signalColor, setSignalColor] = useState('#1565bb');
  
   let calcBmi = (event) => {
     //prevent submitting to the server
@@ -17,17 +18,20 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height * height) * 703)
+      let bmi = (weight / height / height * 10000)
       setBmi(bmi.toFixed(1))
  
       // Logic for message
  
       if (bmi < 19) {
         setMessage('You are underweight')
+        setSignalColor('#eb0b0b')
       } else if (bmi >= 19 && bmi < 25) {
         setMessage('You are a healthy weight')
+        setSignalColor('#0eb763')
       } else {
         setMessage('You are overweight')
+        setSignalColor('#eb0b0b')
       }
     }
   }
@@ -39,17 +43,17 @@ function App() {
  
   return (
     <div className="app">
-    <div className='container'>
+    <div className='container' style={{ boxShadow: `0px 0px 12px ${signalColor}` }}>
       <h2 className='center'>BMI Calculator</h2>
       <form onSubmit={calcBmi}>
  
         <div>
-          <label>Weight (lbs)</label>
+          <label>Weight (kg)</label>
           <input value={weight} onChange={(e) => setWeight(e.target.value)} />
         </div>
  
         <div>
-          <label>Height (in)</label>
+          <label>Height (cm)</label>
           <input value={height} onChange={(event) => setHeight(event.target.value)} />
         </div>
  
